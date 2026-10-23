@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_ksa_retention_root" name="Retention &amp; Advance"
+              parent="account.menu_finance" sequence="55"
+              groups="account.group_account_invoice"/>
+    <menuitem id="menu_ksa_retention_release" name="Release Retention"
+              parent="menu_ksa_retention_root" action="action_ksa_retention_release" sequence="10"
+              groups="account.group_account_manager"/>
+    <menuitem id="menu_ksa_retention_report" name="Retention &amp; Advance Report"
+              parent="menu_ksa_retention_root" action="action_ksa_retention_report" sequence="20"
+              groups="account.group_account_invoice"/>
+    <menuitem id="menu_ksa_retention_settings" name="Settings"
+              parent="menu_ksa_retention_root" action="action_ksa_retention_settings" sequence="90"
+              groups="account.group_account_manager"/>
+</odoo>

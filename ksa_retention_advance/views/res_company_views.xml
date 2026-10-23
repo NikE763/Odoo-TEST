@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ksa_retention_settings_form" model="ir.ui.view">
+        <field name="name">ksa.retention.settings.form</field>
+        <field name="model">ksa.retention.settings</field>
+        <field name="arch" type="xml">
+            <form string="Retention &amp; Advance Settings">
+                <group>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="retention_account_id" options="{'no_create': True}"/>
+                    <field name="retention_percent"/>
+                    <field name="retention_journal_id" options="{'no_create': True}"/>
+                </group>
+                <footer>
+                    <button name="action_save" string="Save" type="object" class="btn-primary" data-hotkey="q"/>
+                    <button string="Cancel" special="cancel" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ksa_retention_settings" model="ir.actions.act_window">
+        <field name="name">Retention &amp; Advance Settings</field>
+        <field name="res_model">ksa.retention.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

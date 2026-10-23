@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ksa_retention_settings,ksa.retention.settings,model_ksa_retention_settings,account.group_account_manager,1,1,1,1
+access_ksa_retention_release_wizard,ksa.retention.release.wizard,model_ksa_retention_release_wizard,account.group_account_manager,1,1,1,1
+access_ksa_retention_release_wizard_line,ksa.retention.release.wizard.line,model_ksa_retention_release_wizard_line,account.group_account_manager,1,1,1,1
+access_ksa_retention_report,ksa.retention.report,model_ksa_retention_report,account.group_account_invoice,1,1,1,1
+access_ksa_retention_report_line,ksa.retention.report.line,model_ksa_retention_report_line,account.group_account_invoice,1,1,1,1

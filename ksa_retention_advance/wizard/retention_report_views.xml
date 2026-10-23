@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_ksa_retention_report_form" model="ir.ui.view">
+        <field name="name">ksa.retention.report.form</field>
+        <field name="model">ksa.retention.report</field>
+        <field name="arch" type="xml">
+            <form string="Retention &amp; Advance Report">
+                <header>
+                    <button name="action_compute" string="Compute" type="object" class="btn-primary"/>
+                    <button name="action_export_xlsx" string="Export to Excel" type="object"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date_as_at"/>
+                            <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company"
+                                   options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="partner_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <field name="line_ids" nolabel="1">
+                        <list create="0" delete="0" edit="0">
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="partner_id"/>
+                            <field name="sale_order_id"/>
+                            <field name="work_done" optional="hide"/>
+                            <field name="total_invoiced"/>
+                            <field name="retention_held"/>
+                            <field name="retention_released"/>
+                            <field name="retention_balance"/>
+                            <field name="advance_received"/>
+                            <field name="advance_recovered"/>
+                            <field name="advance_balance"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ksa_retention_report" model="ir.actions.act_window">
+        <field name="name">Retention &amp; Advance Report</field>
+        <field name="res_model">ksa.retention.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+</odoo>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Retention / advance block right after the totals of the printed invoice -->
+    <template id="report_invoice_document_ksa_retention" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@id='total']" position="after">
+            <div t-if="o.move_type == 'out_invoice' and o.ksa_has_deductions"
+                 id="ksa_retention_summary" class="row mt-2">
+                <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
+                    <table class="table table-sm table-borderless" style="page-break-inside: avoid;">
+                        <tr>
+                            <td>Invoice Total / <span lang="ar" dir="rtl">إجمالي الفاتورة</span></td>
+                            <td class="text-end"><span t-field="o.amount_total"/></td>
+                        </tr>
+                        <tr t-if="o.ksa_retention_amount">
+                            <td>
+                                Less: Retention <span t-if="o.ksa_retention_percent">(<t t-out="'%g' % o.ksa_retention_percent"/>%)</span>
+                                / <span lang="ar" dir="rtl">ناقصاً: المبلغ المحتجز</span>
+                            </td>
+                            <td class="text-end">-<span t-field="o.ksa_retention_amount"/></td>
+                        </tr>
+                        <tr t-if="o.ksa_advance_recovery_amount">
+                            <td>
+                                Less: Advance Recovery / <span lang="ar" dir="rtl">ناقصاً: استرداد الدفعة المقدمة</span>
+                            </td>
+                            <td class="text-end">-<span t-field="o.ksa_advance_recovery_amount"/></td>
+                        </tr>
+                        <tr class="border-black fw-bold">
+                            <td>Amount to Pay Now / <span lang="ar" dir="rtl">المبلغ المستحق الآن</span></td>
+                            <td class="text-end"><span t-field="o.ksa_amount_due_now"/></td>
+                        </tr>
+                        <tr t-if="o.ksa_retention_amount and o.ksa_handover_date">
+                            <td colspan="2" class="text-muted small">
+                                Retention due on handover (expected <span t-field="o.ksa_handover_date"/>).
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

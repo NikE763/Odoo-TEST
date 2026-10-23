@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_payment_form_ksa_advance" model="ir.ui.view">
+        <field name="name">account.payment.form.ksa.advance</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='group1']" position="inside">
+                <field name="ksa_is_advance"
+                       invisible="payment_type != 'inbound' or partner_type != 'customer'"/>
+                <field name="ksa_sale_order_id"
+                       invisible="not ksa_is_advance"
+                       options="{'no_create': True}"/>
+                <field name="ksa_advance_remaining"
+                       invisible="not ksa_is_advance or state == 'draft'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
